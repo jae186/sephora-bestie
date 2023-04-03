@@ -1,5 +1,7 @@
 import asyncio
 import os
+import sys
+
 import telegram
 from bs4 import BeautifulSoup
 import aiohttp
@@ -26,9 +28,10 @@ async def my_function():
 
     # Send a notification if new links are available
     zoom_links = set(zoom_links)
-    if len(zoom_links) > 2:
+    if len(zoom_links) > 1:
         message = "New links available: " + str(zoom_links)
         await bot.send_message(chat_id=chat_id, text=message)
+        sys.exit(1)
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(my_function())
